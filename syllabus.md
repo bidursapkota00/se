@@ -197,21 +197,21 @@
 
 ## **Unit VIII: Emerging Trends in Software Engineering (8 Hours)**
 
-- **8.1.1 Cloud-Native Development**
+- **8.1 Cloud-Native Development**
   - Microservices Architecture: Principles and Benefits, Designing Microservices
   - Serverless Computing: Concepts and Use Cases, Advantages and Limitations
-- **8.1.2 AI in Software Engineering**
+- **8.2 AI in Software Engineering**
   - AI-Assisted Coding and Testing: Tools and Technologies, Impact on Development Processes
   - Machine Learning Applications: Incorporating ML into Software Solutions
-- **8.1.3 Software for IoT and Edge Computing**
+- **8.3 Software for IoT and Edge Computing**
   - Challenges and Best Practices
   - Designing for Resource-Constrained Environments
-- **8.1.4 Sustainability in Software Engineering**
+- **8.4 Sustainability in Software Engineering**
   - Eco-Friendly Practices
   - Energy-Efficient Coding
   - Sustainable Resource Usage
   - Green Coding: Techniques and Benefits
-- **8.1.5 Secure Software Development Practices**
+- **8.5 Secure Software Development Practices**
   - Basic Principles of Writing Secure Code
   - Common Vulnerabilities and Mitigation Strategies
   - Understanding Common Web Security Risks: Brief Strategies for Prevention
