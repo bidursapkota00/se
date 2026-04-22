@@ -5,14 +5,17 @@
 ## 7.1 Configuration Management Planning
 
 > **Past Questions:**
+>
 > - **[Old1]** Explain the importance of configuration items, baselines, and change management processes. How do these ensure controlled updates? _(Q6b)_
 > - **[Old2]** Define Configuration Items and Baselines. How do they help control changes and maintain software integrity? _(Q6b)_
 
 ### What is Software Configuration Management (SCM)?
 
-SCM is a discipline that provides **systematic control over the changes** made to a software system throughout its lifecycle. It ensures that the software product maintains its integrity, consistency, and traceability from development through deployment and maintenance.
+SCM is a discipline that provides **systematic control over the changes** made to a software system throughout its lifecycle.
 
-SCM answers: *What changed? When did it change? Who changed it? Why was it changed? Can we go back?*
+<!-- It ensures that the software product maintains its integrity, consistency, and traceability from development through deployment and maintenance. -->
+
+SCM answers: _What changed? When did it change? Who changed it? Why was it changed? Can we go back?_
 
 ### Importance of Configuration Management
 
@@ -28,6 +31,7 @@ SCM answers: *What changed? When did it change? Who changed it? Why was it chang
 A **Configuration Item** is any artifact that is placed under configuration management — any component that must be uniquely identified, version-controlled, and tracked.
 
 **Examples of CIs:**
+
 - Source code files and modules.
 - Requirements specifications (SRS).
 - Design documents and UML models.
@@ -35,7 +39,7 @@ A **Configuration Item** is any artifact that is placed under configuration mana
 - Build scripts and configuration files.
 - User manuals and release notes.
 - Database schemas.
-- Third-party libraries and dependencies.
+<!-- - Third-party libraries and dependencies. -->
 
 Each CI has a **unique identifier**, a **version number**, and a **change history**. CIs are stored in a **configuration management repository** (e.g., a Git repository).
 
@@ -44,11 +48,13 @@ Each CI has a **unique identifier**, a **version number**, and a **change histor
 A **baseline** is a formally reviewed, approved, and frozen snapshot of a set of configuration items at a specific point in time. Once established, a baseline can only be changed through a formal change control process.
 
 **Types of Baselines:**
-- **Functional Baseline** — approved requirements specification (SRS). Captures *what* the system must do.
-- **Design Baseline (Allocated Baseline)** — approved design documents. Captures *how* the system will be built.
-- **Product Baseline** — the approved, tested, and released software product. Captures the *final delivered system*.
+
+- **Functional Baseline** — approved requirements specification (SRS). Captures _what_ the system must do.
+- **Design Baseline (Allocated Baseline)** — approved design documents. Captures _how_ the system will be built.
+- **Product Baseline** — the approved, tested, and released software product. Captures the _final delivered system_.
 
 **Why Baselines Matter:**
+
 - Provide a **stable reference point** — all subsequent changes are tracked against the baseline.
 - Enable **rollback** — if a new change introduces defects, the team can revert to the last stable baseline.
 - Support **impact analysis** — when a change is proposed, the baseline shows exactly what will be affected.
@@ -68,6 +74,7 @@ An SCM Plan defines how configuration management will be conducted for a project
 ## 7.2 Change Management
 
 > **Past Questions:**
+>
 > - **[Old2]** How is a change request managed in the SCM process? Write the procedure. _(Q2b)_
 > - **[Old2]** How can version and release management help a team with frequent updates? Discuss tools and strategies. _(Q6b OR)_
 > - **[Internal1]** What is SCM? Describe the process of incorporating change during software development. _(Q5b)_
@@ -91,32 +98,36 @@ Change is inevitable in software projects — requirements evolve, bugs are disc
 
 6. **Release and Closure** — the change is merged into the mainline, a new baseline is established, and the change request is formally closed with documentation of what was done.
 
-**Change Categories:**
+<!-- **Change Categories:**
+
 - **Standard** — routine, low-risk, pre-approved changes (e.g., minor UI fixes, dependency updates).
 - **Normal** — medium-to-high risk changes requiring CCB review and formal approval.
-- **Emergency** — critical fixes for production-breaking issues, using an expedited approval process.
+- **Emergency** — critical fixes for production-breaking issues, using an expedited approval process. -->
 
 ### Version Management
 
 **Version management** tracks the evolution of each configuration item through successive revisions.
 
 **Version Numbering Convention (Semantic Versioning):**
+
 - Format: **MAJOR.MINOR.PATCH** (e.g., v2.3.1)
 - **MAJOR** — incremented for incompatible API changes or significant feature overhauls.
 - **MINOR** — incremented for backward-compatible new features or enhancements.
 - **PATCH** — incremented for backward-compatible bug fixes.
 
 **Versioning Practices:**
+
 - Every CI is stored in a version control system (Git, SVN) with a complete change history.
 - Each version is associated with a commit message describing what changed and why.
 - Tags are used to mark specific versions as releases (e.g., `v1.0.0`, `v2.1.0-beta`).
-- Branching strategies (Git Flow, Trunk-Based Development) organize parallel development streams.
+<!-- - Branching strategies (Git Flow, Trunk-Based Development) organize parallel development streams. -->
 
 ### Release Management
 
 **Release management** governs the process of packaging, testing, and deploying a specific version of the software to users.
 
 **Release Process:**
+
 1. **Release Planning** — define scope (which features/fixes are included), schedule, and acceptance criteria.
 2. **Build and Integration** — compile code, merge all approved changes, produce a deployable package.
 3. **Testing** — rigorous testing on the release candidate (functional, integration, performance, security, UAT).
@@ -128,6 +139,7 @@ Change is inevitable in software projects — requirements evolve, bugs are disc
 6. **Rollback Plan** — if critical issues are found, revert to the previous stable release.
 
 **How Version and Release Management Help Teams:**
+
 - Provides a clear history of what changed between releases.
 - Enables parallel development (feature branches) without destabilizing the main codebase.
 - Allows rapid rollback to a known-good state if a release causes problems.
@@ -142,12 +154,14 @@ Change is inevitable in software projects — requirements evolve, bugs are disc
 **System building** is the process of compiling source code, linking libraries, running tests, and packaging the software into a deployable artifact. **Build automation** replaces manual build steps with scripts and tools.
 
 **Build Tools:**
+
 - **Make** — classic build tool using Makefiles (C/C++ projects).
 - **Maven/Gradle** — Java build tools handling compilation, dependency management, testing, and packaging.
 - **npm/yarn** — JavaScript build and dependency management.
 - **MSBuild** — .NET build tool.
 
 **What a Build Script Typically Does:**
+
 1. Fetch dependencies from a package repository.
 2. Compile source code into executable code.
 3. Run automated unit tests.
@@ -156,6 +170,7 @@ Change is inevitable in software projects — requirements evolve, bugs are disc
 6. Generate build reports (test results, code coverage).
 
 **Benefits of Build Automation:**
+
 - **Repeatability** — same build script produces the same output every time.
 - **Speed** — automated builds are faster than manual compilation.
 - **Error reduction** — eliminates human mistakes in the build process.
@@ -166,6 +181,7 @@ Change is inevitable in software projects — requirements evolve, bugs are disc
 **Continuous Integration (CI)** is the practice of merging all developer working copies into a shared mainline multiple times per day, with each merge triggering an automated build and test.
 
 **CI Best Practices:**
+
 - **Commit frequently** — developers integrate code at least once per day, ideally multiple times.
 - **Maintain a single source repository** — all code lives in one version-controlled repository.
 - **Automate the build** — every commit triggers an automated build-and-test cycle.
@@ -179,6 +195,7 @@ Change is inevitable in software projects — requirements evolve, bugs are disc
 ## 7.4 CASE Tools for Configuration Management
 
 > **Past Questions:**
+>
 > - **[Internal3]** Evaluate the use of VCS in managing requirements documents. How does a central repository improve collaboration, reduce risks, and ensure compliance? _(Q6b)_
 
 ### Overview of Git and Subversion
@@ -190,6 +207,7 @@ Change is inevitable in software projects — requirements evolve, bugs are disc
 **Architecture:** Every developer has a **full local copy** of the entire repository, including its complete history.
 
 **Key Concepts:**
+
 - **Repository (Repo)** — the database storing all files, branches, commits, and history.
 - **Commit** — a snapshot of all tracked files at a point in time, with a message describing the change.
 - **Branch** — an independent line of development. Default branch is `main` (or `master`).
@@ -199,6 +217,7 @@ Change is inevitable in software projects — requirements evolve, bugs are disc
 - **Push/Pull** — sending local commits to / fetching remote commits from the remote repository.
 
 **Basic Git Workflow:**
+
 1. `git clone` — get a copy of the repository.
 2. `git checkout -b feature-x` — create and switch to a new branch.
 3. Make changes, then `git add .` and `git commit -m "description"`.
@@ -206,16 +225,18 @@ Change is inevitable in software projects — requirements evolve, bugs are disc
 5. Create a Pull Request → code review → approval → merge into main.
 6. CI pipeline runs automated tests on the merged code.
 
-**Branching Strategies:**
+<!-- **Branching Strategies:**
+
 - **Git Flow** — separate branches for features, releases, hotfixes, and development. Structured but complex.
 - **Trunk-Based Development** — developers work on short-lived branches and merge into main frequently. Simpler, preferred for CI/CD.
-- **GitHub Flow** — simplified: main branch is always deployable; feature branches merge via PRs.
+- **GitHub Flow** — simplified: main branch is always deployable; feature branches merge via PRs. -->
 
 ### Subversion (SVN) — Centralized VCS
 
 **Architecture:** A **single central repository** on a server. Developers check out files, modify them, and commit changes back to the server.
 
 **Key Differences from Git:**
+
 - No local repository — requires network access for most operations.
 - Linear history — branching and merging are less flexible than Git.
 - Simpler access control — directory-level permissions are easier to manage.
@@ -240,17 +261,20 @@ Change is inevitable in software projects — requirements evolve, bugs are disc
 In Configuration Management, Jenkins, Docker, and Kubernetes extend beyond basic CI/CD (covered in Chapter 2) to provide **infrastructure-level configuration control**.
 
 **Jenkins in CM:**
+
 - **Pipeline as Code** — Jenkinsfiles stored in version control define the entire build/test/deploy pipeline as a CI. Changes to the pipeline go through the same review process as application code.
 - **Environment configuration** — Jenkins manages environment-specific settings (dev, staging, production) through parameterized pipelines.
 - **Artifact management** — Jenkins archives build artifacts with version numbers, enabling traceability between source code and deployed binaries.
 
 **Docker in CM:**
+
 - **Infrastructure as Code** — Dockerfiles define the entire runtime environment (OS, libraries, dependencies). The Dockerfile itself is a configuration item under version control.
 - **Immutable infrastructure** — once a Docker image is built, it doesn't change. The same image deployed in staging is identical to what runs in production.
 - **Environment consistency** — eliminates configuration drift between environments.
 - **Reproducibility** — any version of the application can be reproduced by building its tagged Dockerfile.
 
 **Kubernetes in CM:**
+
 - **Declarative configuration** — Kubernetes manifests (YAML files) declare the desired state of the system (how many replicas, which image version, resource limits). These files are stored in version control.
 - **Configuration management** — Kubernetes ConfigMaps and Secrets manage application configuration separately from code.
 - **Automated rollback** — if a new deployment fails health checks, Kubernetes automatically rolls back to the previous version.

@@ -355,12 +355,12 @@ Top-Down Testing:              Bottom-Up Testing:
 **When:** During the **development/coding phase** — performed by developers as they write code.
 **Purpose:** Verify that each unit of code works correctly on its own before integrating with other units.
 
-**Characteristics:**
+<!-- **Characteristics:**
 
 - Tests the smallest testable parts of the software.
 - Uses test frameworks (JUnit, pytest, NUnit).
 - Fast to execute; should be automated and run frequently.
-- Isolates the unit from dependencies using mocks or stubs.
+- Isolates the unit from dependencies using mocks or stubs. -->
 
 **Example:** Testing a `calculateDiscount(price, percentage)` function with various inputs to verify it returns the correct discounted price.
 
@@ -370,12 +370,12 @@ Top-Down Testing:              Bottom-Up Testing:
 **When:** After unit testing — during the **integration phase** when modules are combined.
 **Purpose:** Detect interface defects, data flow errors, and incorrect interactions between modules that individually pass unit tests.
 
-**Integration Strategies:**
+<!-- **Integration Strategies:**
 
 - **Big Bang** — all modules integrated simultaneously and tested together. Simple but difficult to isolate faults.
 - **Top-Down** — integration starts from the top-level module downward. Lower modules replaced by **stubs**. Tests high-level logic early.
 - **Bottom-Up** — integration starts from the lowest-level modules upward. Higher modules replaced by **drivers**. Tests foundational components first.
-- **Sandwich (Hybrid)** — combines top-down and bottom-up approaches simultaneously.
+- **Sandwich (Hybrid)** — combines top-down and bottom-up approaches simultaneously. -->
 
 **Example:** After unit testing `LoginModule` and `DatabaseModule` separately, integration testing verifies that `LoginModule` correctly queries `DatabaseModule` for user credentials and handles the response properly.
 
