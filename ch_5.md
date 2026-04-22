@@ -5,6 +5,7 @@
 ## 5.1 Reuse Concepts
 
 > **Past Questions:**
+>
 > - **[Old1]** How does delegation reduce tight coupling between classes? Give an example of a design pattern that applies delegation. _(Q5ai)_
 > - **[Old1]** What problem can occur if implementation inheritance is overused, and how does the Liskov Substitution Principle (LSP) help? _(Q5aii)_
 > - **[Internal1]** Write short notes on: Reusability. _(Q7a)_
@@ -15,6 +16,7 @@
 **Reusability** is the degree to which existing software components (classes, modules, libraries, frameworks, patterns) can be used in new applications with little or no modification. It is a core goal of software engineering because it reduces development time, cost, and defects.
 
 **Levels of reuse:**
+
 - **Code reuse** — using existing classes, functions, or libraries directly.
 - **Design reuse** — applying proven design patterns to solve recurring problems.
 - **Architecture reuse** — adopting established architectural styles (e.g., MVC, microservices).
@@ -23,9 +25,11 @@
 ### Application Objects vs. Solution Objects
 
 **Application (Domain) Objects:** Represent real-world entities from the problem domain. Identified by domain experts and stakeholders.
+
 - Examples: `Customer`, `Order`, `Book`, `Patient`, `Invoice`.
 
 **Solution Objects:** Represent technical components that don't exist in the problem domain but are needed to implement the system. Identified by developers.
+
 - Examples: `DatabaseConnector`, `Logger`, `ThreadPool`, `EventDispatcher`, `AuthenticationManager`.
 
 Solution objects are prime candidates for reuse across projects because they solve common technical problems independent of any specific business domain.
@@ -33,6 +37,7 @@ Solution objects are prime candidates for reuse across projects because they sol
 ### Specification Inheritance vs. Implementation Inheritance
 
 **Specification (Interface) Inheritance:**
+
 - A subclass inherits only the **interface** (method signatures) from a parent class or interface.
 - It defines a **contract** — the subclass promises to provide behavior conforming to the interface.
 - Focus is on **substitutability** — any subclass can be used wherever the parent type is expected.
@@ -40,12 +45,14 @@ Solution objects are prime candidates for reuse across projects because they sol
 - Example: `PaymentMethod` interface declares `processPayment()`. Both `CreditCard` and `PayPal` implement this interface, each with their own logic.
 
 **Implementation Inheritance:**
+
 - A subclass inherits both the **interface and the code** (method implementations) from a parent class.
 - Provides **code reuse** — child classes get functionality "for free."
 - Creates **tight coupling** — changes to the parent class can break all subclasses.
 - Example: `ArrayList` extends `AbstractList`, inheriting shared list operations.
 
 **Problems with overusing implementation inheritance:**
+
 - **Fragile base class problem** — modifying the parent class may unexpectedly break subclass behavior.
 - **Deep hierarchies** — complex inheritance chains become hard to understand, maintain, and debug.
 - **Inappropriate "is-a" relationships** — forcing inheritance when the classes don't have a true "is-a" relationship leads to design flaws and LSP violations.
@@ -58,6 +65,7 @@ Solution objects are prime candidates for reuse across projects because they sol
 **Delegation** is a design technique where an object handles a request by forwarding it to a helper object (the **delegate**) rather than implementing the behavior itself. It achieves reuse through **composition** ("has-a") rather than inheritance ("is-a").
 
 **How delegation reduces tight coupling:**
+
 - The delegating class depends on an **interface**, not a concrete implementation.
 - The delegate can be **swapped at runtime** — different behavior without modifying the delegating class.
 - The delegating class only exposes functionality it explicitly forwards, not the entire API of another class.
@@ -65,12 +73,12 @@ Solution objects are prime candidates for reuse across projects because they sol
 
 **Delegation vs. Inheritance:**
 
-| Aspect | Inheritance | Delegation |
-|---|---|---|
-| Relationship | "is-a" (compile-time) | "has-a" (runtime composable) |
-| Coupling | Tight (subclass depends on parent internals) | Loose (depends on interface only) |
-| Flexibility | Fixed at compile time | Delegate swappable at runtime |
-| API exposure | Inherits entire parent API | Exposes only explicitly forwarded methods |
+| Aspect       | Inheritance                                  | Delegation                                |
+| ------------ | -------------------------------------------- | ----------------------------------------- |
+| Relationship | "is-a" (compile-time)                        | "has-a" (runtime composable)              |
+| Coupling     | Tight (subclass depends on parent internals) | Loose (depends on interface only)         |
+| Flexibility  | Fixed at compile time                        | Delegate swappable at runtime             |
+| API exposure | Inherits entire parent API                   | Exposes only explicitly forwarded methods |
 
 **Example — Delegation with Strategy Pattern:**
 Instead of `Duck extends FlyingBird` (inheritance), use `Duck` has-a `FlyBehavior` (delegation). A `Duck` object holds a reference to a `FlyBehavior` interface. At runtime, you can set it to `FlyWithWings` or `NoFly` — the duck's flying behavior changes without any class hierarchy modification. The Strategy pattern is a classic example of delegation in action.
@@ -82,6 +90,7 @@ Instead of `Duck extends FlyingBird` (inheritance), use `Duck` has-a `FlyBehavio
 **Formally:** Subtypes must be substitutable for their base types.
 
 **Why LSP matters:**
+
 - It ensures that inheritance hierarchies are semantically correct, not just syntactically correct.
 - Violating LSP leads to unexpected behavior, runtime errors, and code that requires type-checking (`instanceof` checks), defeating the purpose of polymorphism.
 
@@ -100,6 +109,7 @@ class Square extends Rectangle:
 ```
 
 Client code:
+
 ```
 r = getShape()    // could return Rectangle or Square
 r.setWidth(5)
@@ -111,16 +121,17 @@ A `Square` violates LSP because it **changes the expected behavior** of `setWidt
 
 **How to fix:** Don't make `Square` extend `Rectangle`. Instead, use separate classes implementing a common `Shape` interface, or use composition. The violation occurred because a Square "is-not-a" Rectangle in terms of behavior, even though it is geometrically.
 
-**LSP compliance checklist:**
+<!-- **LSP compliance checklist:**
 - The subclass must honor the parent's contract (preconditions, postconditions, invariants).
 - The subclass should not throw unexpected exceptions.
-- The subclass should not weaken postconditions or strengthen preconditions.
+- The subclass should not weaken postconditions or strengthen preconditions. -->
 
 ---
 
 ## 5.2 Common Design Patterns
 
 > **Past Questions:**
+>
 > - **[Old2]** Discuss Factory and Abstract Factory patterns. How do they help create objects flexibly? _(Q4b)_
 > - **[Old2]** Discuss Strategy and Command patterns. How do they decouple behavior from objects? _(Q4b OR)_
 > - **[Internal1]** Define design patterns. Describe types and usage. _(Q5a)_
@@ -132,9 +143,10 @@ A `Square` violates LSP because it **changes the expected behavior** of `setWidt
 
 A design pattern is a **reusable, proven solution** to a commonly occurring problem in software design. It is not finished code — it is a template or blueprint describing how to solve a problem that can be adapted to many situations.
 
-**Origin:** The concept was popularized by the "Gang of Four" (GoF) — Gamma, Helm, Johnson, Vlissides — in their 1994 book *"Design Patterns: Elements of Reusable Object-Oriented Software."*
+**Origin:** The concept was popularized by the "Gang of Four" (GoF) — Gamma, Helm, Johnson, Vlissides — in their 1994 book _"Design Patterns: Elements of Reusable Object-Oriented Software."_
 
 **Why design patterns matter:**
+
 - **Proven solutions** — patterns have been tested and refined by the software engineering community over decades.
 - **Common vocabulary** — saying "use a Factory here" immediately communicates a design idea to any developer familiar with patterns.
 - **Reuse at the design level** — patterns promote code reuse, maintainability, and flexibility by applying established structural relationships.
@@ -143,12 +155,15 @@ A design pattern is a **reusable, proven solution** to a commonly occurring prob
 ### Three Categories of Design Patterns
 
 **Creational Patterns** — deal with **object creation** mechanisms, providing flexibility in what gets created, who creates it, and how.
+
 - Examples: Factory Method, Abstract Factory, Singleton, Builder, Prototype.
 
 **Structural Patterns** — deal with **object composition**, defining how classes and objects are assembled into larger structures.
+
 - Examples: Adapter, Composite, Bridge, Decorator, Facade, Proxy.
 
 **Behavioral Patterns** — deal with **communication and responsibility** between objects, defining how objects interact and distribute behavior.
+
 - Examples: Strategy, Command, Observer, State, Template Method, Iterator.
 
 ---
@@ -162,12 +177,14 @@ A design pattern is a **reusable, proven solution** to a commonly occurring prob
 **Problem it solves:** Client code needs to create objects but shouldn't be tightly coupled to specific concrete classes. Directly using `new ConcreteClass()` throughout the code makes it rigid and hard to extend.
 
 **Structure:**
+
 - **Product** (interface) — defines the interface of objects the factory creates.
 - **ConcreteProduct** — implements the Product interface.
 - **Creator** (abstract class) — declares the factory method `createProduct()` which returns a `Product`.
 - **ConcreteCreator** — overrides `createProduct()` to return a specific `ConcreteProduct`.
 
 **Example — Notification System:**
+
 ```
 interface Notification { send(message) }
 class EmailNotification implements Notification { send(msg) { /* send email */ } }
@@ -177,6 +194,7 @@ abstract class NotificationFactory { abstract createNotification(): Notification
 class EmailFactory extends NotificationFactory { createNotification() { return new EmailNotification() } }
 class SMSFactory extends NotificationFactory { createNotification() { return new SMSNotification() } }
 ```
+
 Client code calls `factory.createNotification().send("Hello")` — it doesn't know or care whether it gets an email or SMS notification.
 
 **Benefits:** Promotes flexibility (add new products without changing existing code), follows Open/Closed Principle.
@@ -189,6 +207,7 @@ Client code calls `factory.createNotification().send("Hello")` — it doesn't kn
 **Problem it solves:** When a system needs to produce multiple related products that must be used together (e.g., a UI toolkit where buttons, menus, and scrollbars must all match the same theme).
 
 **Structure:**
+
 - **AbstractFactory** — declares methods for creating each type of abstract product (`createButton()`, `createMenu()`).
 - **ConcreteFactory** — implements the creation methods for a specific family (e.g., `DarkThemeFactory`, `LightThemeFactory`).
 - **AbstractProduct** — interface for each type of product (e.g., `Button`, `Menu`).
@@ -196,11 +215,13 @@ Client code calls `factory.createNotification().send("Hello")` — it doesn't kn
 - **Client** — uses only the abstract interfaces; doesn't know concrete classes.
 
 **Example — Cross-platform GUI:**
+
 ```
 interface GUIFactory { createButton(): Button; createCheckbox(): Checkbox }
 class WindowsFactory implements GUIFactory { createButton() → WindowsButton; createCheckbox() → WindowsCheckbox }
 class MacFactory implements GUIFactory { createButton() → MacButton; createCheckbox() → MacCheckbox }
 ```
+
 The client receives a factory and calls `factory.createButton()` — guaranteed to get a button consistent with the platform.
 
 **Benefits:** Ensures compatibility among products in a family, isolates concrete classes from client.
@@ -219,11 +240,13 @@ The client receives a factory and calls `factory.createButton()` — guaranteed 
 **Problem it solves:** You want to use an existing class (or third-party library), but its interface doesn't match what your code expects. You cannot modify the existing class.
 
 **Structure:**
+
 - **Target** — the interface the client expects.
 - **Adaptee** — the existing class with an incompatible interface.
 - **Adapter** — implements the Target interface and internally delegates calls to the Adaptee.
 
 **Example:**
+
 ```
 interface MediaPlayer { play(filename) }      // Target — what client expects
 class VLCPlayer { playVLC(filename) { ... } }  // Adaptee — incompatible interface
@@ -233,6 +256,7 @@ class MediaAdapter implements MediaPlayer {    // Adapter
     play(filename) { vlc.playVLC(filename) }   // translates the call
 }
 ```
+
 Client code calls `player.play("song.vlc")` — the adapter translates this into `vlc.playVLC("song.vlc")`.
 
 **Benefits:** Reuses existing classes without modification; follows Single Responsibility and Open/Closed principles.
@@ -241,14 +265,18 @@ Client code calls `player.play("song.vlc")` — the adapter translates this into
 
 **Intent:** Compose objects into **tree structures** to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects **uniformly**.
 
+Part-whole hierarchy represents the structural relationship where complex objects are decomposed into smaller, constituent parts.
+
 **Problem it solves:** You have a hierarchical structure (like a file system, organization chart, or menu) and want to treat leaves (single items) and branches (groups) through the same interface.
 
 **Structure:**
+
 - **Component** — common interface for all objects in the tree (`display()`, `getSize()`).
 - **Leaf** — a single object with no children (e.g., `File`).
 - **Composite** — a container that holds children (both leaves and other composites) and implements component operations by delegating to children (e.g., `Directory`).
 
 **Example — File System:**
+
 ```
 interface FileSystemComponent { display(); getSize() }
 class File implements FileSystemComponent { display() { print name }; getSize() { return size } }
@@ -259,6 +287,7 @@ class Directory implements FileSystemComponent {
     getSize() { return sum of child.getSize() }
 }
 ```
+
 A `Directory` can contain `File`s and other `Directory`s. Calling `display()` on a directory recursively displays all contents.
 
 **Benefits:** Simplifies client code (no type-checking); makes it easy to add new component types.
@@ -270,12 +299,14 @@ A `Directory` can contain `File`s and other `Directory`s. Calling `display()` on
 **Problem it solves:** When a class varies in two independent dimensions, using inheritance for both creates a combinatorial explosion of subclasses. For example, `Shape` × `Color` gives: `RedCircle`, `BlueCircle`, `RedSquare`, `BlueSquare`, etc.
 
 **Structure:**
+
 - **Abstraction** — defines the high-level interface and holds a reference to an Implementor.
 - **RefinedAbstraction** — extends the Abstraction (e.g., `Circle`, `Square`).
 - **Implementor** — defines the interface for implementation classes.
 - **ConcreteImplementor** — provides specific implementations (e.g., `RedColor`, `BlueColor`).
 
 **Example:**
+
 ```
 interface Color { applyColor() }
 class Red implements Color { applyColor() { "apply red" } }
@@ -285,6 +316,7 @@ abstract class Shape { color: Color; abstract draw() }
 class Circle extends Shape { draw() { "draw circle with " + color.applyColor() } }
 class Square extends Shape { draw() { "draw square with " + color.applyColor() } }
 ```
+
 Adding a new color or a new shape requires only one new class, not an entire matrix of combinations.
 
 **Benefits:** Eliminates subclass explosion; abstraction and implementation evolve independently.
@@ -300,11 +332,13 @@ Adding a new color or a new shape requires only one new class, not an entire mat
 **Problem it solves:** A class needs to perform a task in multiple ways, and you want to switch between them at runtime without modifying the class.
 
 **Structure:**
+
 - **Context** — maintains a reference to a Strategy object and delegates the algorithm execution to it.
 - **Strategy** (interface) — declares the method(s) common to all supported algorithms.
 - **ConcreteStrategy** — implements a specific algorithm.
 
 **Example — Payment Processing:**
+
 ```
 interface PaymentStrategy { pay(amount) }
 class CreditCardPayment implements PaymentStrategy { pay(amount) { /* charge card */ } }
@@ -317,6 +351,7 @@ class ShoppingCart {
     checkout(amount) { strategy.pay(amount) }
 }
 ```
+
 At runtime: `cart.setPaymentStrategy(new PayPalPayment())` — the cart uses PayPal without any code changes.
 
 **Benefits:** Open/Closed Principle (add new strategies without modifying existing code); eliminates conditional logic (no `if/else` chains for selecting algorithms); algorithm is swappable at runtime.
@@ -330,6 +365,7 @@ At runtime: `cart.setPaymentStrategy(new PayPalPayment())` — the cart uses Pay
 **Problem it solves:** You want to decouple the object that invokes an operation (sender) from the object that performs it (receiver). You also need to support undo, queuing, or logging of operations.
 
 **Structure:**
+
 - **Command** (interface) — declares `execute()` and optionally `undo()`.
 - **ConcreteCommand** — implements `execute()` by invoking operations on the Receiver. Stores the state needed for `undo()`.
 - **Receiver** — the object that performs the actual work.
@@ -337,6 +373,7 @@ At runtime: `cart.setPaymentStrategy(new PayPalPayment())` — the cart uses Pay
 - **Client** — creates ConcreteCommand objects and sets their Receivers.
 
 **Example — Smart Home Remote:**
+
 ```
 interface Command { execute(); undo() }
 
@@ -352,6 +389,7 @@ class Remote {       // Invoker
     pressUndo() { command.undo() }
 }
 ```
+
 The `Remote` doesn't know about the `Light`. It just calls `execute()` on whatever command it holds. You can easily swap in a `FanOnCommand`, `GarageDoorOpenCommand`, etc.
 
 **Benefits:** Decouples invoker from receiver; supports undo/redo, command queuing, macro commands (composite commands), and logging/auditing.

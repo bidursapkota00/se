@@ -144,10 +144,11 @@ A Kanban board visualizes the entire workflow using:
 | **Cadence**       | Fixed sprints (2–4 weeks)              | Continuous flow                          |
 | **Roles**         | Product Owner, Scrum Master, Dev Team  | No prescribed roles                      |
 | **Change Policy** | Changes wait until next sprint         | Changes can be made anytime              |
-| **Metrics**       | Velocity (story points/sprint)         | Lead time, cycle time                    |
-| **Planning**      | Sprint Planning at start               | Continuous replenishment                 |
 | **WIP Limits**    | Implicit (sprint capacity)             | Explicit per column                      |
 | **Best For**      | Projects needing structured iterations | Support/maintenance, continuous delivery |
+
+<!-- | **Metrics**       | Velocity (story points/sprint)         | Lead time, cycle time                    | -->
+<!-- | **Planning**      | Sprint Planning at start               | Continuous replenishment                 | -->
 
 ---
 
@@ -165,9 +166,9 @@ DevOps is a **cultural and technical movement** that unifies software **Developm
 
 - **Collaboration** — break down silos between Dev and Ops teams. Both share responsibility for the software's performance from development to production.
 - **Automation** — automate repetitive tasks (build, test, deploy, monitor) to reduce human error and increase speed.
-- **Continuous Improvement** — learn from failures, optimize processes, minimize waste.
-- **Shared Responsibility** — end the "throw it over the wall" mentality. Developers care about operations; operations care about development.
-- **Measurement and Feedback** — use metrics (deployment frequency, lead time, failure rate, mean time to recovery) to drive data-informed decisions.
+  <!-- - **Continuous Improvement** — learn from failures, optimize processes, minimize waste. -->
+  <!-- - **Shared Responsibility** — end the "throw it over the wall" mentality. Developers care about operations; operations care about development. -->
+- **Measurement and Feedback** — use metrics (deployment frequency, lead time, failure rate, mean time to recovery) to drive data-informed decisions and continious improvement.
 
 ### Continuous Integration / Continuous Deployment (CI/CD)
 
@@ -198,8 +199,8 @@ DevOps is a **cultural and technical movement** that unifies software **Developm
 - **Speed** — automated pipelines drastically reduce time from code commit to production deployment.
 - **Reliability** — automated testing catches defects early; automated deployments reduce human error.
 - **Frequency** — enables deploying multiple times per day instead of quarterly/yearly releases.
-- **Quick recovery** — if a deployment fails, automated rollback mechanisms restore the previous version rapidly.
-- **Feedback loops** — monitoring in production provides immediate feedback for the next development cycle.
+<!-- - **Quick recovery** — if a deployment fails, automated rollback mechanisms restore the previous version rapidly.
+- **Feedback loops** — monitoring in production provides immediate feedback for the next development cycle. -->
 - **Quality** — continuous testing at every stage ensures higher code quality and fewer production bugs.
 
 ### Collaboration Between Development and Operations
@@ -211,10 +212,10 @@ DevOps is a **cultural and technical movement** that unifies software **Developm
 **DevOps approach:**
 
 - Dev and Ops work together throughout the lifecycle.
-- **Shared tools** — both teams use the same CI/CD pipelines, monitoring dashboards, and incident management systems.
+<!-- - **Shared tools** — both teams use the same CI/CD pipelines, monitoring dashboards, and incident management systems.
 - **Infrastructure as Code (IaC)** — infrastructure is defined in version-controlled code (e.g., Terraform, Ansible), treated like application code.
 - **Shared on-call** — developers participate in on-call rotations, giving them direct exposure to production issues.
-- **Blameless postmortems** — when failures occur, the focus is on systemic causes and preventive measures, not individual blame.
+- **Blameless postmortems** — when failures occur, the focus is on systemic causes and preventive measures, not individual blame. -->
 
 ---
 
@@ -254,7 +255,7 @@ A project organization defines the **structure, roles, and reporting relationshi
 - **Dependencies** — consider which tasks must finish before others can start.
 - **Ownership** — encourage team members to take ownership of tasks for accountability.
 
-**Work Products** at the project management level include:
+**\*Work Products** at the project management level include:
 
 - Project plan (schedule, milestones, budget)
 - Work Breakdown Structure (WBS) — hierarchical decomposition of the project into manageable tasks
@@ -348,13 +349,13 @@ Unplanned communication is **spontaneous and undocumented**. It happens naturall
 - **Asynchronous** — email, project management tools (Jira, Trello), documentation wikis (Confluence), version control comments — for non-urgent communication across time zones.
 - **Visual tools** — Kanban boards, dashboards, burndown charts — for at-a-glance project status.
 
-### Best Practices for Project Communication
+<!-- ### Best Practices for Project Communication
 
 - Define a **communication plan** at project start — who communicates what, to whom, how often, and through which channel.
 - Document all important decisions (even if made informally).
 - Prefer **async-first** — use written communication for non-urgent matters to minimize meeting overload.
 - Keep meetings focused with a clear agenda and time-box.
-- Use a **single source of truth** (shared project management tool) to avoid information fragmentation.
+- Use a **single source of truth** (shared project management tool) to avoid information fragmentation. -->
 
 ---
 
